@@ -35,10 +35,10 @@
 							<li class="">Scrum Board </li>
 						</ol>
 						<div class="">
-							<button class="btn text-white bg-red add-task" id="deleteALL" type="button" onclick="initTaskForm()">
+							<button class="btn text-white bg-red add-task" id="deleteALL" type="button" name="deleteAll">
 								Delete All
 							</button>
-							<button class="btn text-white bg-green add-task" id="add-btn" onclick="hideButtom()" type="button" data-bs-toggle="modal" data-bs-target="#add-task" >
+							<button class="btn text-white bg-green add-task" id="add-btn" type="button" data-bs-toggle="modal" data-bs-target="#add-task" >
 								+ Add Task
 							</button>
 						</div>
@@ -97,7 +97,7 @@
 	<div class="modal-dialog">
 	  <div class="modal-content">
 		<div class="modal-header">
-		  <h1 class="modal-title fs-5" id="form-title"></h1>
+		  <h1 class="modal-title fs-5" id="form-title">add Task</h1>
 		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		</div>
 		<div class="modal-body">
@@ -126,11 +126,11 @@
 		</select>
 		</div>
 		<div>
-			<label for="priority">Status</label><br>
+			<label for="priority" name="status">Status</label><br>
 			<select class="form-select" aria-label="Default select example" name="Status" id="Status">
-			  <option value="TO-do">To do</option>
-			  <option value="In-progress">In progress</option>
-			  <option value="Done">Done</option>
+			  <option value="todo">To do</option>
+			  <option value="inprogres">In progress</option>
+			  <option value="done">Done</option>
 			  </select>
 		  </div>
 		  <div>
@@ -138,7 +138,7 @@
 			<input type="date" class="form-control" id="date" name="date">
 		  </div>
 		  <div class="mb-3">
-			<label for="Description" class="col-form-label" >Description:</label>
+			<label for="Description" class="col-form-label">Description:</label>
 			<textarea class="form-control" name="Description" id="Description"></textarea>
 		  </div>
 			
@@ -147,9 +147,9 @@
 		
 		<div class="modal-footer">
 		  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-		  <button type="button" class="btn btn-primary" id="save">Save</button>
-		  <button type="button" class="btn btn-success"  id="Update">Update</button>
-		  <button type="button" class="btn btn-danger" id="delete">delete</button>
+		  <button type="button" class="btn btn-primary" id="save" name="save">Save</button>
+		  <button type="button" class="btn btn-success"  id="Update" name="Update">Update</button>
+		  <button type="button" class="btn btn-danger" id="delete" name="delete">delete</button>
 		</div>
 	  </div>
 	</div>

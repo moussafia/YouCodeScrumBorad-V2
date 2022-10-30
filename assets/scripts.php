@@ -8,12 +8,19 @@
     if(isset($_POST['save']))        saveTask();
     if(isset($_POST['update']))      updateTask();
     if(isset($_POST['delete']))      deleteTask();
+    if(isset($_POST['deleteAll']))    deleteAll();
     
 
     function getTasks()
     {
         //CODE HERE
         //SQL SELECT
+        $title=$_POST['title'];
+        $type=$_POST['type'];
+        $Priority=$_POST['Priority'];
+        $date=$_POST['date'];
+        $description=$_POST['Description'];
+        $req="INSERT INTO tasks("
         echo "Fetch all tasks";
     }
 
@@ -41,5 +48,7 @@
         $_SESSION['message'] = "Task has been deleted successfully !";
 		header('location: index.php');
     }
+function deleteAll(){
 
+}
 ?>
