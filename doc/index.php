@@ -61,6 +61,9 @@
 						</div>
 						<div class="" id="to-do-tasks">
 							<!-- TO DO TASKS HERE -->
+							<?php 
+								getTasks(1)
+							?>
 
 						</div>
 					</div>
@@ -73,6 +76,9 @@
 						</div>
 						<div class="" id="in-progress-tasks">
 							<!-- IN PROGRESS TASKS HERE -->
+							<?php 
+								getTasks(2)
+							?>
 							
 						</div>
 					</div>
@@ -84,15 +90,16 @@
 
 						</div>
 						<div class="" id="done-tasks">
-							
-							
+						<?php 
+								getTasks(3)
+							?>
 						</div>
 					</div>
 				</div>
 			
 		</div>
 	</div>
-  <form name="task" method="POST" id="form-task">
+  <form name="task" action="scripts.php" method="POST" >
   <div class="modal fade" id="add-task" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 	  <div class="modal-content">
@@ -105,13 +112,13 @@
 		  <input class="form-control" type="text" name="title" aria-label="default input example" id="title"><br>
 		  <label for="title">Type</label><br>
 		  <div class="form-check">
-			<input class="form-check-input" type="radio" name="type" value="Feature" checked>
+			<input class="form-check-input" type="radio" name="type" value="23">
 			<label class="form-check-label" for="flexRadioDefault1">
 			  Feature
 			</label>
 		  </div>
 		  <div class="form-check">
-			<input class="form-check-input" type="radio" name="type" value="Bug" >
+			<input class="form-check-input" type="radio" name="type" value="24" >
 			<label class="form-check-label" for="flexRadioDefault2">
 			  Bug
 			</label>
@@ -119,23 +126,23 @@
 		  <div>
 		  <label for="priority">Priority</label><br>
 		  <select class="form-select" aria-label="Default select example" id="Priority" name="Priority">
-			<option value="Low">Low</option>
-			<option value="Medium">Medium</option>
-			<option value="High">High</option>
-			<option value="Critical">Critical</option>
+			<option value="1">Low</option>
+			<option value="2">Medium</option>
+			<option value="3">High</option>
+			<option value="4">Critical</option>
 		</select>
 		</div>
 		<div>
 			<label for="priority" name="status">Status</label><br>
 			<select class="form-select" aria-label="Default select example" name="Status" id="Status">
-			  <option value="todo">To do</option>
-			  <option value="inprogres">In progress</option>
-			  <option value="done">Done</option>
+			  <option value="1">To do</option>
+			  <option value="2">In progress</option>
+			  <option value="3">Done</option>
 			  </select>
 		  </div>
 		  <div>
 			<label for="date">Date:</label><br>
-			<input type="date" class="form-control" id="date" name="date">
+			<input type="datetime-local" class="form-control" id="date" name="date">
 		  </div>
 		  <div class="mb-3">
 			<label for="Description" class="col-form-label">Description:</label>
@@ -147,9 +154,9 @@
 		
 		<div class="modal-footer">
 		  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-		  <button type="button" class="btn btn-primary" id="save" name="save">Save</button>
-		  <button type="button" class="btn btn-success"  id="Update" name="Update">Update</button>
-		  <button type="button" class="btn btn-danger" id="delete" name="delete">delete</button>
+		  <button type="submit" class="btn btn-primary" id="save" name="save">Save</button>
+		  <button type="submit" class="btn btn-success"  id="Update" name="Update">Update</button>
+		  <button type="submit" class="btn btn-danger" id="delete" name="delete">delete</button>
 		</div>
 	  </div>
 	</div>
