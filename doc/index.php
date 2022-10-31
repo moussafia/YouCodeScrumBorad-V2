@@ -56,13 +56,13 @@
 				<div class="col-xl-4 col-md-6 col-sm-12">
 					<div class="">
 						<div class="col-12 To-do">
-							<h4 class="">To do <span id="to-do-tasks-count"></span></h4>
+							<h4 class="">To do(<?php compteTasks(1); ?>) <span id="to-do-tasks-count"></span></h4>
 
 						</div>
 						<div class="" id="to-do-tasks">
 							<!-- TO DO TASKS HERE -->
 							<?php 
-								getTasks(1)
+								getTasks(1);
 							?>
 
 						</div>
@@ -71,13 +71,13 @@
 				<div class="col-xl-4 col-md-6 col-sm-12">
 					<div class="">
 						<div class="col-12 In-Progress">
-							<h4 class="">In Progress <span id="in-progress-tasks-count"></span></h4>
+							<h4 class="">In Progress(<?php compteTasks(2); ?>) <span id="in-progress-tasks-count"></span></h4>
 
 						</div>
 						<div class="" id="in-progress-tasks">
 							<!-- IN PROGRESS TASKS HERE -->
 							<?php 
-								getTasks(2)
+								getTasks(2);
 							?>
 							
 						</div>
@@ -86,12 +86,12 @@
 				<div class="col-xl-4 col-md-6 col-sm-12">
 					<div class="">
 						<div class="col-12 Done">
-							<h4 class="">Done <span id="done-tasks-count"></span></h4>
+							<h4 class="">Done(<?php compteTasks(3); ?>) <span id="done-tasks-count"></span></h4>
 
 						</div>
 						<div class="" id="done-tasks">
 						<?php 
-								getTasks(3)
+								getTasks(3);
 							?>
 						</div>
 					</div>

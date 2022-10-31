@@ -11,20 +11,20 @@
     if(isset($_POST['deleteAll']))    deleteAll();
     
     function getTasks($parametre)
-    {
-        global $conn;
-        //CODE HERE
-        //SQL SELECT   
+    {   
+        GLOBAL $conn;
         $sql="SELECT * FROM tasks INNER JOIN type ON type_id=type.idType 
         INNER JOIN priorities ON priority_id=priorities.idPriorities 
         INNER JOIN  status ON status_id=status.idStatus";
         $result=mysqli_query($conn, $sql);
              
         while($row =mysqli_fetch_assoc($result)){
-            if($parametre ==$row["idStatus"]) {
+            if($parametre ==$row["idStatus"]) {    
+     //affichage les tasks dans chaque case du status correspondantes.
         echo ' <button class="btn btn-outline-dark col-12" data-bs-toggle="modal" data-bs-target="#add-task">
                         <div>
-                            <div class="text-start fw-bolder"><i class="bi bi-question-circle-fill"></i>'.$row["title"] .'</div>
+                            <div class="text-start fw-bolder">
+                            <i class="bi bi-question-circle-fill"></i>'.$row["title"] .'</div>
                             <div>
                                 <div class="fw-lighter">'. $row["idTasks"].'#created in'.$row["task_datetime"].'</div>
                                 <div class="fst-italic">'.$row["description"].'</div>
@@ -34,10 +34,7 @@
                                 <span class="rounded-2 border border-white bg-secondary text-white">'.$row['nameType'].'</span>
                             </div>
                         </div>
-                    </button>';
-       
-     }
-
+                    </button>'; }
     }
 }
 
@@ -82,4 +79,11 @@
 function deleteAll(){
 
 }
+function compteTasks($parametre){
+        GLOBAL $conn;
+        $sql="SELECT COUNT(*) FROM tasks WHERE status_id=$parametre";
+        $result=mysqli_query($conn, $sql);
+        while($row =mysqli_fetch_assoc($result)){
+            echo $row["COUNT(*)"];
+}}
 ?>
