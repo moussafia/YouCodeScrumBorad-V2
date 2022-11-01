@@ -38,7 +38,7 @@
 							<button class="btn text-white bg-red add-task" id="deleteALL" type="button" name="deleteAll">
 								Delete All
 							</button>
-							<button class="btn text-white bg-green add-task" id="add-btn" type="button" data-bs-toggle="modal" data-bs-target="#add-task" >
+							<button class="btn text-white bg-green add-task" id="addBtn" onclick="AddTask()" type="button" data-bs-toggle="modal" data-bs-target="#add-task" >
 								+ Add Task
 							</button>
 						</div>
@@ -99,12 +99,12 @@
 			
 		</div>
 	</div>
-  <form name="task" action="scripts.php" method="POST" >
+  <form name="taskForm" action="scripts.php" method="POST" >
   <div class="modal fade" id="add-task" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 	  <div class="modal-content">
 		<div class="modal-header">
-		  <h1 class="modal-title fs-5" id="form-title">add Task</h1>
+		  <h1 class="modal-title fs-5" id="form-title"></h1>
 		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		</div>
 		<div class="modal-body">
@@ -169,10 +169,6 @@
 	<script src="./assets/js/app.min.js"></script>
 	<script src="./assets/js/vendor.min.js"></script>
 	<!-- ================== END core-js ================== -->
-	<script src="scripts.js"></script>
-
-	<script>
-		//reloadTasks();
-	</script>
+	<script src="app.js"></script>
 </body>
 </html>
