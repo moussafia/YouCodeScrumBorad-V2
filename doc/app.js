@@ -18,7 +18,7 @@ function clickBtntasks(parmeID){
     delet.style.display = 'inline';
     save.style.display='none';
     document.getElementById('form-title').innerHTML="Edit Task";
-    //for bring element from database servers in input of form 
+    //for bring element from database server in input of form 
             form.title.value = document.getElementById(parmeID).getAttribute("title");
             form.type.value=document.getElementById(parmeID).getAttribute("typeForm");
             form.Priority.value=document.getElementById(parmeID).getAttribute("PriorityForm");

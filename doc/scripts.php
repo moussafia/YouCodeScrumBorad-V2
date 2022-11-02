@@ -10,11 +10,6 @@
     function getTasks($parametre)
     {   
         GLOBAL $conn;
-        
-        /* $sql="SELECT * FROM tasks INNER JOIN type ON type_id=type.idType 
-        INNER JOIN priorities ON priority_id=priorities.idPriorities 
-        INNER JOIN  status ON status_id=status.idStatus WHERE $parametre=status_id";  */
-
         //affichage les tasks dans chaque case du status correspondantes.
         $sql="SELECT *,nameType,nameStatus,namePriority FROM tasks,type,status,priorities 
         WHERE $parametre=status_id AND 	type_id=idType AND status_id=idStatus AND priority_id=idPriorities ";
