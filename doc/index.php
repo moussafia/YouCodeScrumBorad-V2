@@ -35,12 +35,15 @@
 							<li class="">Scrum Board </li>
 						</ol>
 						<div class="">
-							<button class="btn text-white bg-red add-task" id="deleteALL" type="button" name="deleteAll">
+							<form method="POST" class="d-inline">
+							<button class="btn text-white bg-red add-task" id="deleteALL" type="submit"  name="deleteAll">
 								Delete All
 							</button>
+							</form>
 							<button class="btn text-white bg-green add-task" id="addBtn" onclick="AddTask()" type="button" data-bs-toggle="modal" data-bs-target="#add-task" >
 								+ Add Task
 							</button>
+							</form>
 						</div>
 					</div>
 					<!-- BEGIN page-header -->
@@ -107,6 +110,7 @@
 		  <h1 class="modal-title fs-5" id="form-title"></h1>
 		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		</div>
+		<input type="hidden" id="idHide" name="idHide"> 
 		<div class="modal-body">
 		  <label for="title">Title</label><br>
 		  <input class="form-control" type="text" name="title" aria-label="default input example" id="title"><br>

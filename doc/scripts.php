@@ -4,20 +4,24 @@
     //SESSSION IS A WAY TO STORE DATA TO BE USED ACROSS MULTIPLE PAGES
 
     if(isset($_POST['save']))        saveTask();
-    if(isset($_POST['update']))      updateTask();
     if(isset($_POST['delete']))      deleteTask();
     if(isset($_POST['deleteAll']))    deleteAll();
+    if(isset($_POST['Update']))      updateTask();
     function getTasks($parametre)
     {   
         GLOBAL $conn;
-        $sql="SELECT * FROM tasks INNER JOIN type ON type_id=type.idType 
+        
+        /* $sql="SELECT * FROM tasks INNER JOIN type ON type_id=type.idType 
         INNER JOIN priorities ON priority_id=priorities.idPriorities 
-        INNER JOIN  status ON status_id=status.idStatus WHERE $parametre=status_id";  
+        INNER JOIN  status ON status_id=status.idStatus WHERE $parametre=status_id";  */
+
         //affichage les tasks dans chaque case du status correspondantes.
+        $sql="SELECT *,nameType,nameStatus,namePriority FROM tasks,type,status,priorities 
+        WHERE $parametre=status_id AND 	type_id=idType AND status_id=idStatus AND priority_id=idPriorities ";
         $result=mysqli_query($conn, $sql);
         while($row =mysqli_fetch_assoc($result)){     
     ?>
-        <button type ="button" name="btnTasksUD" class="btn btn-outline-dark col-12" 
+        <button type ="button"  class="btn btn-outline-dark col-12 " 
         id="<?php echo $row['idTasks'] ?>" onclick="clickBtntasks(id)" data-bs-toggle="modal" data-bs-target="#add-task"
         title="<?php echo $row['title'] ?>"                typeForm="<?php echo $row['type_id'] ?>" 
         PriorityForm="<?php echo $row['priority_id']?>"    StatusForm="<?php echo $row['status_id']?>" 
@@ -41,7 +45,7 @@
                         <span class="rounded-2 border border-white bg-secondary text-white"><?php echo $row['nameType']?></span>
                     </div>
                 </div>
-            </button><?php 
+            </button><?php      
 }
 }
 
@@ -58,22 +62,40 @@
         $req="INSERT INTO tasks(title,type_id,priority_id,status_id,task_datetime,description)
         VALUES('$title','$type','$Priority','$status','$date','$description')";
         $query_run=mysqli_query($conn, $req);
+        header('location: index.php');
     }
 
     function updateTask()
     {
-        
+        GLOBAL $conn;
+        //SQL INSERT
+        $id = $_POST['idHide'];
+        $title=$_POST['title'];
+        $type=$_POST['type'];
+        $Priority=$_POST['Priority'];
+        $status=$_POST['Status'];
+        $date=$_POST['date'];
+        $description=$_POST['Description'];
+        $req="UPDATE `tasks` SET `title`='$title',`type_id`='$type',
+        `priority_id`='$Priority',`status_id`='$status',`task_datetime`='$date',
+        `description`='$description' WHERE `idTasks`=$id";
+        $result=mysqli_query($conn, $req);
+		header('location: index.php');
     }
 
     function deleteTask()
-    {
-        //CODE HERE
-        //SQL DELETE
-        $_SESSION['message'] = "Task has been deleted successfully !";
+    {   //SQL DELETE
+        GLOBAL $conn;
+        $id = $_POST['idHide'];
+        $req="DELETE FROM tasks WHERE idTasks= '$id'";
+        $result=mysqli_query($conn, $req);
 		header('location: index.php');
     }
 function deleteAll(){
-
+    GLOBAL $conn;
+    $req="DELETE FROM tasks";
+    $result=mysqli_query($conn, $req);
+	header('location: index.php');
 }
 function compteTasks($parametre){
         GLOBAL $conn;
@@ -83,20 +105,4 @@ function compteTasks($parametre){
             echo $row["COUNT(*)"];
 }
 }
-
-// function bringTasksHere($parametre){
-//         GLOBAL $conn;
-//         $req="SELECT * FROM tasks WHERE idTasks=$parametre";
-//         GLOBAL $conn;
-//         //SQL INSERT
-//         $query_run=mysqli_query($conn, $req);
-//         $result=mysqli_query($conn, $req);
-//         $row =mysqli_fetch_assoc($result);
-//         $titleG=$row['title'];
-//         $typeG=$row['type_id'];
-//         $PriorityG=$row['priority_id'];
-//         $statusG=$row['status_id'];
-//         $dateG=$row['task_datetime'];
-//         $descriptionG=$row['description'];    
-// }
 ?>
