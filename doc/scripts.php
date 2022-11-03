@@ -14,34 +14,35 @@
         $sql="SELECT *,nameType,nameStatus,namePriority FROM tasks,type,status,priorities 
         WHERE $parametre=status_id AND 	type_id=idType AND status_id=idStatus AND priority_id=idPriorities ";
         $result=mysqli_query($conn, $sql);
-        while($row =mysqli_fetch_assoc($result)){     
-    ?>
-        <button type ="button"  class="btn btn-outline-dark col-12 " 
-        id="<?php echo $row['idTasks'] ?>" onclick="clickBtntasks(id)" data-bs-toggle="modal" data-bs-target="#add-task"
-        title="<?php echo $row['title'] ?>"                typeForm="<?php echo $row['type_id'] ?>" 
-        PriorityForm="<?php echo $row['priority_id']?>"    StatusForm="<?php echo $row['status_id']?>" 
-        dateForm="<?php echo $row["task_datetime"]?>"      DescriptionForm="<?php echo $row["description"]?>">
-                <div>
-                    <div class="text-start fw-bolder">
 
-                 <!-- condition sur les icones pour afficher selon le status -->
-                <?php if ($parametre==1){?>  <i class="bi bi-question-circle-fill"></i> <?php } ?>
-                <?php if ($parametre==2){?>  <i class="bi bi-arrow-right-square"></i> <?php } ?>
-                <?php if ($parametre==3){?>  <i class="bi bi-shield-x"></i> <?php } ?>   
-                              
-                                <?php echo $row["title"] ?></div>
-                    
+                foreach($result as $row){    
+    ?>
+                    <button type ="button"  class="btn btn-outline-dark col-12 " 
+                    id="<?php echo $row['idTasks'] ?>" onclick="clickBtntasks(id)" data-bs-toggle="modal" data-bs-target="#add-task"
+                    title="<?php echo $row['title'] ?>"                typeForm="<?php echo $row['type_id'] ?>" 
+                    PriorityForm="<?php echo $row['priority_id']?>"    StatusForm="<?php echo $row['status_id']?>" 
+                    dateForm="<?php echo $row["task_datetime"]?>"      DescriptionForm="<?php echo $row["description"]?>">
                             <div>
-                        <div class="fw-lighter"><?php echo $row["idTasks"]?>#created in <?php echo $row["task_datetime"]?></div>
-                        <div class="fst-italic"> <?php echo $row["description"]?></div>
-                    </div>
-                    <div>
-                        <span class="rounded-2 text-black bg-info"><?php echo $row['namePriority']?></span>
-                        <span class="rounded-2 border border-white bg-secondary text-white"><?php echo $row['nameType']?></span>
-                    </div>
-                </div>
-            </button><?php      
-}
+                                <div class="text-start fw-bolder">
+
+                            <!-- condition sur les icones pour afficher selon le status -->
+                            <?php if ($parametre==1){?>  <i class="bi bi-question-circle-fill"></i> <?php } ?>
+                            <?php if ($parametre==2){?>  <i class="bi bi-arrow-right-square"></i> <?php } ?>
+                            <?php if ($parametre==3){?>  <i class="bi bi-shield-x"></i> <?php } ?>   
+                                        
+                                            <?php echo $row["title"] ?></div>
+                                
+                                        <div>
+                                    <div class="fw-lighter"><?php echo $row["idTasks"]?>#created in <?php echo $row["task_datetime"]?></div>
+                                    <div class="fst-italic"> <?php echo $row["description"]?></div>
+                                </div>
+                                <div>
+                                    <span class="rounded-2 text-black bg-info"><?php echo $row['namePriority']?></span>
+                                    <span class="rounded-2 border border-white bg-secondary text-white"><?php echo $row['nameType']?></span>
+                                </div>
+                            </div>
+                        </button><?php      
+                }
 }
 
     function saveTask()
@@ -82,7 +83,7 @@
     {   //SQL DELETE
         GLOBAL $conn;
         $id = $_POST['idHide'];
-        $req="DELETE FROM tasks WHERE idTasks= '$id'";
+        $req="DELETE FROM tasks WHERE tasks.idTasks= '$id'";
         $result=mysqli_query($conn, $req);
 		header('location: index.php');
     }
